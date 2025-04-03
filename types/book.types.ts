@@ -1,4 +1,4 @@
-interface IBook {
+export interface IBook {
   id: number;
   title: string;
   author: string;
@@ -8,7 +8,7 @@ interface IBook {
   availableCopies: number;
   description: string;
   coverColor: string;
-  coverUrl: string;
+  coverImage: string;
   videoUrl: string;
   summary: string;
   isLoanedBook?: boolean;

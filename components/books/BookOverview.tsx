@@ -1,5 +1,8 @@
 import Image from "next/image";
 import React from "react";
+import { Button } from "./ui/button";
+import BookCover from "./BookCover";
+import { IBook } from "@/types/book.types";
 
 const BookOverview = ({
   id,
@@ -11,7 +14,7 @@ const BookOverview = ({
   availableCopies,
   description,
   coverColor,
-  coverUrl,
+  coverImage,
   videoUrl,
   summary,
 }: IBook) => {
@@ -41,7 +44,28 @@ const BookOverview = ({
             Available Books: <span>{availableCopies}</span>
           </p>
         </div>
-        <p></p>
+        <p className="book-description">{description}</p>
+        <Button className="book-overview_btn">
+          <Image src={"/icons/book.svg"} alt="book" width={20} height={20} />
+          <p className="font-bebas-neue text-xl text-dark-100">Borrow Book</p>
+        </Button>
+      </div>
+      <div className="relative flex flex-1 justify-center">
+        <div className="relative">
+          <BookCover
+            variant="wide"
+            className="z-10"
+            coverColor={coverColor}
+            coverImage={coverImage}
+          />
+          <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
+            <BookCover
+              variant="wide"
+              coverColor={coverColor}
+              coverImage={coverImage}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
