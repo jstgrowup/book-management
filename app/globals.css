@@ -368,7 +368,7 @@
 .form-btn {
   background: #e7c9a5;
   color: #16191e;
-  min-height: 3.5rem;
+  min-height: 2.8rem;
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -386,7 +386,7 @@
 
 .form-input {
   width: 100%;
-  min-height: 3.5rem;
+  min-height: 2.6rem;
   border: none;
   font-size: 1rem;
   font-weight: 700;
@@ -725,7 +725,7 @@
 /* File Upload */
 .upload-btn {
   display: flex;
-  min-height: 3.5rem;
+  height: 2.6rem;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -734,7 +734,6 @@
 }
 
 .upload-filename {
-  margin-top: 0.25rem;
   text-align: center;
   font-size: 0.75rem;
 }

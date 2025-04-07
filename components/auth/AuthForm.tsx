@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -47,7 +46,7 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    console.log(data);
+    console.log("data:", data);
   };
   return (
     <div className="text-white">
@@ -73,9 +72,10 @@ const AuthForm = <T extends FieldValues>({
                     </FormLabel>
                     <FormControl>
                       {field.name === "universityCard" ? (
-                        <ImageUpload />
+                        <ImageUpload onFileChange={field.onChange} />
                       ) : (
                         <Input
+                          autoComplete="off"
                           required
                           type={
                             FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
