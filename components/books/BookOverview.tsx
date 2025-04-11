@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
+
 import BookCover from "./BookCover";
 import { IBook } from "@/types/book.types";
+import { Button } from "../ui/button";
 
 const BookOverview = ({
   id,
@@ -15,10 +16,7 @@ const BookOverview = ({
   description,
   coverColor,
   coverImage,
-  videoUrl,
-  summary,
 }: IBook) => {
-  console.log("title:", title);
   return (
     <section className="book-overview">
       <div className="flex flex-1 flex-col gap-5">

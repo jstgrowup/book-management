@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import ImageUpload from "./ImageUpload";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 // FieldValues: A generic type representing form values (an object with string keys and any values).
 // Generic <T extends FieldValues>: Ensures T is an object (form values).
 interface IAuthFormPropsType<T extends FieldValues> {
@@ -39,6 +41,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: IAuthFormPropsType<T>) => {
+  const router = useRouter();
   const isSignIn = type === "SIGN_IN";
   const form: UseFormReturn<T> = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -46,7 +49,19 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    console.log("data:", data);
+    const result = await onSubmit(data);
+    if (result.success) {
+      toast.success("Success", {
+        description: isSignIn
+          ? "Ypu have successfully signed in"
+          : "You have successfully signed up.",
+      });
+      router.push("/");
+    } else {
+      toast.error("Failed!", {
+        description: `Error ${isSignIn ? "signing in" : "signing up"}`,
+      });
+    }
   };
   return (
     <div className="text-white">

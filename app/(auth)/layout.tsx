@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { ReactNode } from "react";
-
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="flex flex-col lg:flex-row min-h-screen bg-[url('/images/pattern.webp')] bg-cover bg-top bg-dark-100">

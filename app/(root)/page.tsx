@@ -1,7 +1,6 @@
-import BookList from "@/components/BookList";
-import BookOverview from "@/components/BookOverview";
+import BookList from "@/components/books/BookList";
+import BookOverview from "@/components/books/BookOverview";
 import { sampleBooks } from "@/constants";
-import Image from "next/image";
 
 export default function Home() {
   return (
