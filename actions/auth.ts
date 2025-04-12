@@ -8,6 +8,7 @@ import { hash } from "bcryptjs";
 import { signIn } from "@/auth";
 export const signUp = async (params: IAuthCreadentials) => {
   const { fullName, email, universityCard, universityId, password } = params;
+  // const ip=
   const exsitingUser = await db
     .select()
     .from(users)
@@ -39,7 +40,8 @@ export const signInWithCredentials = async (
       password,
       redirect: false,
     });
-    if (!result?.error) {
+
+    if (!result) {
       return { success: false, error: "Error while signin" };
     }
     return { success: true };
