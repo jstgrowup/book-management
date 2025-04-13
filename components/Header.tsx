@@ -28,14 +28,6 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
         </li>
         <li>
           <Link
-            href={"/library"}
-            className="text-base cursor-pointer capitalize"
-          >
-            Library
-          </Link>
-        </li>
-        <li>
-          <Link
             href={"/my-profile"}
             className="text-base cursor-pointer capitalize "
           >
