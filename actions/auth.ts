@@ -37,7 +37,7 @@ export const signUp = async (params: IAuthCreadentials) => {
       config.env.api.devEnviroment === "dev"
         ? config.env.api.prodEndPoint
         : config.env.api.apiEndPoint
-    }/workflow/onboarding`;
+    }/workflows/onboarding`;
 
     await workFlowClient.trigger({
       url: url,
