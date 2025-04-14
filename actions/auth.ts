@@ -8,6 +8,8 @@ import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/rate-limit";
 import { redirect } from "next/navigation";
+import { workFlowClient } from "@/lib/workflow";
+import config from "@/lib/config";
 export const signUp = async (params: IAuthCreadentials) => {
   const { fullName, email, universityCard, universityId, password } = params;
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
@@ -17,6 +19,7 @@ export const signUp = async (params: IAuthCreadentials) => {
     .select()
     .from(users)
     .where(eq(users.email, email));
+
   if (exsitingUser.length) {
     return { success: false, error: "User already exists" };
   }
@@ -28,6 +31,13 @@ export const signUp = async (params: IAuthCreadentials) => {
       universityId,
       password: hashedPassword,
       universityCard,
+    });
+    await workFlowClient.trigger({
+      url: `${config.env.api.prodEndPoint}/workflow/onboarding`,
+      body: {
+        email,
+        fullName,
+      },
     });
     return { success: true };
   } catch (error) {
