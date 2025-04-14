@@ -34,7 +34,7 @@ export const signUp = async (params: IAuthCreadentials) => {
     });
 
     const url = `${
-      config.env.api.devEnviroment === "dev"
+      config.env.api.devEnviroment === "prod"
         ? config.env.api.prodEndPoint
         : config.env.api.apiEndPoint
     }/workflows/onboarding`;
