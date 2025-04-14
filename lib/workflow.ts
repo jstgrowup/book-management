@@ -1,7 +1,8 @@
 import { Client as WorkFlowClient } from "@upstash/workflow";
 // import { Client as QstashClient } from "@upstash/qstash";
-import emailjs from "@emailjs/browser";
+// import emailjs from "@emailjs/browser";
 import config from "./config";
+import axios from "axios";
 export const workFlowClient = new WorkFlowClient({
   baseUrl: config.env.upstash.qstashUrl,
   token: config.env.upstash.qstashToken,
@@ -16,10 +17,10 @@ export const sendEmail = async ({
   emailParams: any;
   templateId: string;
 }) => {
-  return emailjs.send(
-    config.env.emailJs.emailJsServiceId,
-    templateId,
-    emailParams,
-    config.env.emailJs.emailJsPublicKey
-  );
+  return axios.post("https://api.emailjs.com/api/v1.0/email/send", {
+    service_id: config.env.emailJs.emailJsServiceId,
+    template_id: templateId,
+    user_id: config.env.emailJs.emailJsPublicKey,
+    template_params: emailParams,
+  });
 };
