@@ -60,7 +60,7 @@ const AuthForm = <T extends FieldValues>({
       router.push("/");
     } else {
       toast.error("Failed!", {
-        description: `Error ${isSignIn ? "signing in" : "signing up"}`,
+        description: `${result.error}`,
       });
     }
   };

@@ -32,13 +32,21 @@ export const signUp = async (params: IAuthCreadentials) => {
       password: hashedPassword,
       universityCard,
     });
+
+    const url = `${
+      config.env.api.devEnviroment === "dev"
+        ? config.env.api.prodEndPoint
+        : config.env.api.apiEndPoint
+    }/workflow/onboarding`;
+
     await workFlowClient.trigger({
-      url: `${config.env.api.prodEndPoint}/workflow/onboarding`,
+      url: url,
       body: {
         email,
         fullName,
       },
     });
+
     return { success: true };
   } catch (error) {
     return { success: false, error: "Error while signup" };

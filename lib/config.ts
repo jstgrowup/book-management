@@ -3,6 +3,7 @@ const config = {
     api: {
       apiEndPoint: process.env.NEXT_PUBLIC_API_ENDPOINT!,
       prodEndPoint: process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!,
+      devEnviroment: process.env.DEV_ENVIROTMENT!,
     },
     imageKit: {
       publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
