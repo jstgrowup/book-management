@@ -46,7 +46,11 @@ export const signUp = async (params: IAuthCreadentials) => {
         fullName,
       },
     });
-
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
     return { success: true };
   } catch (error) {
     return { success: false, error: "Error while signup" };
