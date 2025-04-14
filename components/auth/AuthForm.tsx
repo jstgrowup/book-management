@@ -56,9 +56,7 @@ const AuthForm = <T extends FieldValues>({
           ? "You have successfully signed in"
           : "You have successfully signed up.",
       });
-      setTimeout(() => {
-        router.push("/");
-      }, 1000);
+      router.push("/");
     } else {
       toast.error("Failed!", {
         description: `${result.error}`,
