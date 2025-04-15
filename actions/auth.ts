@@ -36,6 +36,7 @@ export const signUp = async (params: IAuthCreadentials) => {
     await welcomeEmailTask.trigger({
       email: email,
       name: fullName,
+      company: "Elibrary",
     });
 
     await signIn("credentials", {

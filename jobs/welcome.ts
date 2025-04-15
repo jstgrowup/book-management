@@ -13,7 +13,7 @@ const signupPayloadSchema = z.object({
 export const welcomeEmailTask = task({
   id: "send-welcome-email",
   maxDuration: 300,
-  run: async (payload: { email: string; name: string }) => {
+  run: async (payload: { email: string; name: string; company: string }) => {
     const parsedPayload = signupPayloadSchema.parse(payload);
 
     logger.log("Sending welcome email to new user", {
@@ -26,7 +26,7 @@ export const welcomeEmailTask = task({
         emailParams: {
           email: payload.email,
           name: payload.name,
-          company: "ELibrary",
+          company: payload.company,
         },
         templateId: config.env.emailJs.welcomeTemplateId,
       });
