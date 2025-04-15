@@ -8,8 +8,8 @@ import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/rate-limit";
 import { redirect } from "next/navigation";
-import { workFlowClient } from "@/lib/workflow";
-import config from "@/lib/config";
+
+import { welcomeEmailTask } from "@/jobs/welcome";
 export const signUp = async (params: IAuthCreadentials) => {
   const { fullName, email, universityCard, universityId, password } = params;
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
@@ -33,19 +33,11 @@ export const signUp = async (params: IAuthCreadentials) => {
       universityCard,
     });
 
-    const url = `${
-      config.env.api.devEnviroment === "prod"
-        ? config.env.api.prodEndPoint
-        : config.env.api.apiEndPoint
-    }/workflows/onboarding`;
-
-    await workFlowClient.trigger({
-      url: url,
-      body: {
-        email,
-        fullName,
-      },
+    await welcomeEmailTask.trigger({
+      email: email,
+      name: fullName,
     });
+
     await signIn("credentials", {
       email,
       password,
