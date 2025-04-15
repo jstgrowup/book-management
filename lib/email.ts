@@ -1,14 +1,7 @@
-import { Client as WorkFlowClient } from "@upstash/workflow";
-// import { Client as QstashClient } from "@upstash/qstash";
-
 import config from "./config";
-
 import emailjs from "@emailjs/nodejs";
-export const workFlowClient = new WorkFlowClient({
-  baseUrl: config.env.upstash.qstashUrl,
-  token: config.env.upstash.qstashToken,
-});
-export const sendEmail = async ({
+
+const sendEmail = async ({
   emailParams,
   templateId,
 }: {
@@ -25,3 +18,4 @@ export const sendEmail = async ({
     }
   );
 };
+export default sendEmail;

@@ -1,7 +1,8 @@
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import config from "@/lib/config";
-import { sendEmail } from "@/lib/workflow";
+import sendEmail from "@/lib/email";
+
 import { logger, schedules } from "@trigger.dev/sdk/v3";
 import { and, gt, lt } from "drizzle-orm";
 

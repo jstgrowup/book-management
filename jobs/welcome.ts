@@ -1,5 +1,6 @@
 import config from "@/lib/config";
-import { sendEmail } from "@/lib/workflow";
+import sendEmail from "@/lib/email";
+
 import { logger, task } from "@trigger.dev/sdk/v3";
 
 import { z } from "zod";
