@@ -5,11 +5,10 @@ export interface IBook {
   genre: string;
   rating: number;
   totalCopies: number;
-  availableCopies: number;
   description: string;
   coverColor: string;
-  coverImage: string;
-  videoUrl: string;
+  coverUrl: string;
+  videoUrl?: string;
   summary: string;
   isLoanedBook?: boolean;
 }

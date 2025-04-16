@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
-import ImageUpload from "./ImageUpload";
+import FileUpload from "./FileUpload";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 // FieldValues: A generic type representing form values (an object with string keys and any values).
@@ -87,7 +87,15 @@ const AuthForm = <T extends FieldValues>({
                     </FormLabel>
                     <FormControl>
                       {field.name === "universityCard" ? (
-                        <ImageUpload onFileChange={field.onChange} />
+                        <FileUpload
+                          onFileChange={field.onChange}
+                          type="image"
+                          accept="image/*"
+                          placeholder="Upload your ID"
+                          folder="ids"
+                          variant="dark"
+                          value={field.value}
+                        />
                       ) : (
                         <Input
                           autoComplete="off"

@@ -8,7 +8,6 @@ import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/rate-limit";
 import { redirect } from "next/navigation";
-
 import { welcomeEmailTask } from "@/jobs/welcome";
 export const signUp = async (params: IAuthCreadentials) => {
   const { fullName, email, universityCard, universityId, password } = params;
@@ -62,12 +61,14 @@ export const signInWithCredentials = async (
       password,
       redirect: false,
     });
-
     if (!result) {
       return { success: false, error: "Error while signin" };
     }
     return { success: true };
   } catch (error) {
-    return { success: false, error: "Error while signin" };
+    return {
+      success: false,
+      error: "Login failed",
+    };
   }
 };

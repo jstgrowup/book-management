@@ -16,10 +16,10 @@ export const booksSchema = z.object({
   description: z.string().trim().min(2).max(100),
   author: z.string().trim().min(2).max(100),
   genre: z.string().trim().min(2).max(100),
-  rating: z.number().min(1).max(5),
-  totalPages: z.coerce.number().int().positive().lte(10000),
+  rating: z.coerce.number().min(1).max(5),
+  totalCopies: z.coerce.number().int().positive().lte(10000),
   coverUrl: z.string().nonempty(),
   coverColor: z.string().trim().min(2).max(100),
-  videoUrl: z.string().trim(),
+  videoUrl: z.string().trim().optional(),
   summary: z.string().trim().min(10),
 });
